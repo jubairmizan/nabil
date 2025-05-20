@@ -55,7 +55,7 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
     const htmlContent = getReceiptHTML(false);
 
     if (!window.qz) {
-      alert("QZ Tray is not running.");
+      alert("QZ Tray is not runnings.");
       finishPrint();
       return;
     }
@@ -145,7 +145,12 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
 
   return (
     <>
-      <Script src="/qz-tray.js" strategy="beforeInteractive" />
+      <Script
+  src="https://cdn.jsdelivr.net/npm/qz-tray@2.1.0/qz-tray.js"
+  strategy="beforeInteractive"
+  onLoad={() => console.log("✅ QZ Tray loaded")}
+  onError={() => console.error("❌ Failed to load QZ Tray script")}
+  />
       <div className={styles.directPrintContainer}>
         {!autoPrint && (
           <div className={styles.receiptPreviewWrapper}>
