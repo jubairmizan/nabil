@@ -128,6 +128,37 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
     };
   }, [isGeneratingPrint, hasPrinted, onPrintComplete]);
 
+
+  useEffect(() => {
+    const loadScripts = async () => {
+      const loadScript = (src) =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = src;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.body.appendChild(script);
+        });
+  
+      try {
+        await loadScript("/rsvp.min.js");
+        console.log("✅ RSVP loaded");
+  
+        await loadScript("/qz-tray.js");
+        console.log("✅ QZ Tray script loaded");
+  
+        if (window.qz) {
+          console.log("🎉 QZ is ready to use", window.qz.version);
+        }
+      } catch (err) {
+        console.error("❌ Failed to load scripts:", err);
+      }
+    };
+  
+    loadScripts();
+  }, []);
+  
   const handlePrintClick = () => {
     if (!hasPrinted && !printAttempted.current && !printProcessRef.current) {
       printReceipt();
@@ -145,11 +176,11 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
 
   return (
     <>
-      <Script
+      {/* <Script
   src="/qz-tray.js"
   onLoad={() => console.log("✅ Local QZ Tray script loaded")}
   onError={(e) => console.error("❌ Failed to load local QZ Tray", e)}
-/>
+/> */}
 
       <div className={styles.directPrintContainer}>
         {!autoPrint && (
