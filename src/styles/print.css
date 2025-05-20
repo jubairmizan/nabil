@@ -1,0 +1,50 @@
+/* Standard @page setup for thermal receipt printers */
+@page {
+  size: 80mm 297mm;
+  margin: 0;
+}
+
+@media print {
+  /* Hide everything except the receipt */
+  html,
+  body,
+  body * {
+    visibility: hidden !important;
+    background-color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Make the receipt visible */
+  .print-receipt,
+  .print-receipt * {
+    visibility: visible !important;
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Position the receipt properly */
+  .print-receipt {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 80mm !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Remove unnecessary spacing */
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide UI elements during printing */
+  .print-receipt-button,
+  .swal2-container,
+  button {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}

@@ -1,0 +1,256 @@
+.sidebar {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  font-family: var(--font-sans);
+}
+
+.logo {
+  height: auto;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  /* background: linear-gradient(to right, #3498db, #2980b9); */
+  background: linear-gradient(to right, #2982bd, #1a6392);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.logo h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: white;
+  letter-spacing: -0.015em;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.userInfo {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.userName {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  margin-bottom: 3px;
+  word-break: break-word;
+}
+
+.userRole {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  color: white;
+  text-transform: capitalize;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav {
+  flex: 1;
+  padding: 15px 0;
+  overflow-y: auto;
+}
+
+.nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #555;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border-radius: 0 24px 24px 0;
+  margin-right: 15px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+.nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgba(52, 152, 219, 0.08);
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::before {
+  width: 100%;
+}
+
+.nav a:hover,
+.nav a.active {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  border-left: 4px solid #3498db;
+  transform: translateX(3px);
+  font-weight: 500;
+}
+
+.nav a.active {
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+}
+
+.nav a svg {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.nav a:hover svg {
+  transform: scale(1.15);
+  color: #3498db;
+}
+
+.logout {
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #f8f9fa;
+  color: #555;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+.logoutButton::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0) 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+.logoutButton:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.logoutButton:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  border-color: rgba(52, 152, 219, 0.2);
+}
+
+.logoutButton svg {
+  margin-right: 8px;
+  transition: transform 0.2s ease;
+}
+
+.logoutButton:hover svg {
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .logo h2 {
+    display: none;
+  }
+
+  .nav a {
+    justify-content: center;
+    padding: 15px 0;
+  }
+
+  .nav a span {
+    display: none;
+  }
+
+  .logoutButton span {
+    display: none;
+  }
+
+  .logoutButton svg {
+    margin-right: 0;
+  }
+}

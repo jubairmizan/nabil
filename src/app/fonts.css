@@ -1,0 +1,44 @@
+/* 
+ * Local Roboto Font
+ * 
+ * Important: To properly use these fonts, you need to:
+ * 1. Download Roboto from Google Fonts or another source
+ * 2. Convert to woff2 format if needed
+ * 3. Place the files in the public/fonts/roboto/ directory with the following names:
+ *    - Roboto-Light.woff2
+ *    - Roboto-Regular.woff2
+ *    - Roboto-Medium.woff2
+ *    - Roboto-Bold.woff2
+ */
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

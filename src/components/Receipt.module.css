@@ -1,0 +1,158 @@
+.printButton {
+  margin: 20px;
+  display: block; /* Show by default for troubleshooting */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.printButton button {
+  padding: 12px 24px;
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+}
+
+.printButton button:hover {
+  background-color: #0369a1;
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+.printButton button:active {
+  transform: translateY(0);
+}
+
+.receiptWrapper {
+  /* Hidden in normal view but visible for print */
+  display: none;
+}
+
+/* Set receipt style */
+.receipt {
+  width: 80mm; /* Standard thermal receipt width */
+  background-color: white;
+  padding: 10px;
+  font-family: "Courier New", monospace;
+  color: black;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 12px;
+}
+
+/* Header section */
+.receiptHeader {
+  margin-bottom: 15px;
+}
+
+.receiptHeader h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.receiptHeader h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.receiptHeader p {
+  margin: 2px 0;
+  font-size: 12px;
+}
+
+/* Table for item listing */
+.receiptTable {
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.receiptTable th {
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.receiptTable td {
+  vertical-align: top;
+  padding-bottom: 3px;
+}
+
+.receiptTable th:last-child,
+.receiptTable td:last-child {
+  text-align: right;
+}
+
+.receiptTable th:nth-child(2),
+.receiptTable td:nth-child(2) {
+  text-align: right;
+}
+
+.receiptTable th:nth-child(3),
+.receiptTable td:nth-child(3) {
+  text-align: center;
+}
+
+/* Divider line */
+.receiptDivider {
+  border-top: 1px dashed black;
+  margin: 10px 0;
+}
+
+/* Summary section */
+.receiptSummary {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Footer */
+.receiptFooter {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.receiptFooter p {
+  margin: 2px 0;
+}
+
+/* Print styles */
+@media print {
+  .receiptWrapper {
+    display: block;
+  }
+
+  .receipt {
+    width: 100%;
+    padding: 0;
+  }
+
+  .printButton {
+    display: none !important;
+  }
+}

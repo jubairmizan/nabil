@@ -1,0 +1,368 @@
+.container {
+  padding: 20px;
+  color: #333;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.headerLeft h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.headerLeft p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.exportButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.exportButton:hover {
+  background-color: #f3f4f6;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  border: 1px solid #f3f4f6;
+}
+
+.shiftInfoCard {
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.shiftHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shiftTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+
+.shiftStatus {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.activeStatus {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.pastStatus {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.shiftDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.shiftDetail {
+  flex: 1;
+  min-width: 200px;
+}
+
+.detailLabel {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.detailValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.dateRange {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Summary Row Styles */
+.summaryRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summaryItem {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  transition: transform 0.2s;
+}
+
+.summaryItem:hover {
+  transform: translateY(-2px);
+}
+
+.summaryIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.ordersIcon {
+  background-color: #f0f9ff;
+  color: #0284c7;
+}
+
+.itemsIcon {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.salesIcon {
+  background-color: #f0fdf4;
+  color: #15803d;
+}
+
+.summaryContent {
+  flex: 1;
+}
+
+.summaryLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+}
+
+.summaryValue {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.itemsSection {
+  margin-top: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+
+.tableTools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.searchInputWrapper {
+  position: relative;
+  width: 300px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.searchInputWrapper svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  background-color: #f9fafb;
+  text-align: left;
+}
+
+.tableHeader th {
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  white-space: nowrap;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tableBody td {
+  padding: 16px 24px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.tableBody tr:hover {
+  background-color: #f9fafb;
+}
+
+.quantityCell,
+.priceCell,
+.amountCell {
+  font-weight: 600;
+  color: #1f2937;
+  text-align: right;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+.emptyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1f2937;
+}
+
+.emptyText {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  max-width: 400px;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.loadingSpinner {
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #0ea5e9;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .shiftDetails {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .shiftDetail {
+    min-width: 100%;
+  }
+
+  .summaryRow {
+    flex-direction: column;
+  }
+
+  .searchInputWrapper {
+    width: 100%;
+  }
+
+  .tableTools {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
