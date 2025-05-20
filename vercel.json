@@ -6,12 +6,12 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "upgrade-insecure-requests; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https: http: https://nabil-backend.projectsample.info http://localhost:8000; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
+          "value": "upgrade-insecure-requests; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https: http: https://nabil-backend-dev.projectsample.info http://localhost:8000 ws://localhost:8181 wss://localhost:8181; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
         }
       ]
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://nabil-backend.projectsample.info"
+    "NEXT_PUBLIC_API_URL": "https://nabil-backend-dev.projectsample.info"
   }
 }
