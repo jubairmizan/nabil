@@ -53,20 +53,23 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
 
   const printReceiptWithQZTray = async () => {
     const htmlContent = getReceiptHTML(false);
-
+  
     if (!window.qz) {
-      alert("QZ Tray is not runnings.");
+      alert("QZ Tray is not available.");
       finishPrint();
       return;
     }
-
-    qz.security.setCertificatePromise(() =>
-      Promise.resolve("-----BEGIN CERTIFICATE-----\nTEST CERT\n-----END CERTIFICATE-----")
-    );
-    qz.security.setSignaturePromise(() => Promise.resolve());
-
+  
     try {
-      await qz.websocket.connect();
+      if (!qz.websocket.isActive()) {
+        await qz.websocket.connect();
+      }
+  
+      qz.security.setCertificatePromise(() =>
+        Promise.resolve("-----BEGIN CERTIFICATE-----\nTEST CERT\n-----END CERTIFICATE-----")
+      );
+      qz.security.setSignaturePromise(() => Promise.resolve());
+  
       const config = qz.configs.create("RONGTA RP330", {
         encoding: "UTF-8",
         rasterize: true,
@@ -74,14 +77,17 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
         density: 203,
         copies: 1,
       });
+  
       await qz.print(config, [{ type: "html", format: "plain", data: htmlContent }]);
       await qz.websocket.disconnect();
       finishPrint();
     } catch (error) {
       console.error("QZ Tray printing failed", error);
+      alert("Failed to connect or print via QZ Tray.");
       finishPrint();
     }
   };
+  
 
   const finishPrint = () => {
     if (!hasPrinted) {
