@@ -18,7 +18,7 @@ const nextConfig = {
               upgrade-insecure-requests;
               default-src 'self';
               script-src 'self' 'unsafe-inline' 'unsafe-eval';
-              connect-src 'self' https: http: https://nabil-backend-dev.projectsample.info http://localhost:8000 ws://localhost:8282 ws://localhost:8182;
+              connect-src 'self' https: http: https://nabil-backend-dev.projectsample.info http://localhost:8000 https://nabil-dev.old19.com ws://localhost:8282 ws://localhost:8182;
               img-src 'self' data:;
               style-src 'self' 'unsafe-inline';
             `.replace(/\s{2,}/g, ' ').trim()
