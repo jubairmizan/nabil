@@ -147,7 +147,6 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
     <>
       <Script
   src="/qz-tray.js"
-  strategy="beforeInteractive"
   onLoad={() => console.log("✅ Local QZ Tray script loaded")}
   onError={(e) => console.error("❌ Failed to load local QZ Tray", e)}
 />
