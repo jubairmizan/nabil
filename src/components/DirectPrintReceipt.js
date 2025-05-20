@@ -146,11 +146,12 @@ const DirectPrintReceipt = ({ sale, onPrintComplete, autoPrint = false }) => {
   return (
     <>
       <Script
-  src="https://cdn.jsdelivr.net/npm/qz-tray@2.1.0/qz-tray.js"
+  src="/qz-tray.js"
   strategy="beforeInteractive"
-  onLoad={() => console.log("✅ QZ Tray loaded")}
-  onError={() => console.error("❌ Failed to load QZ Tray script")}
-  />
+  onLoad={() => console.log("✅ Local QZ Tray script loaded")}
+  onError={(e) => console.error("❌ Failed to load local QZ Tray", e)}
+/>
+
       <div className={styles.directPrintContainer}>
         {!autoPrint && (
           <div className={styles.receiptPreviewWrapper}>
