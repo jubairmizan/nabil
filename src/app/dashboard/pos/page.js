@@ -864,7 +864,7 @@ export default function POSPage() {
         title: `Order #${actualOrderNumber} processed!`,
         text: "Preparing receipt for printing...",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 500,
         timerProgressBar: true,
         didOpen: () => {
           Swal.showLoading();

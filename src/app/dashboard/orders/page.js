@@ -3,11 +3,12 @@
 import ReceiptModal from "@/components/ReceiptModal";
 import ShiftSummaryReport from "@/components/ShiftSummaryReport";
 import { getApiBaseUrl, getAuthToken } from "@/lib/api-config";
-import { Calendar, ChevronDown, ChevronLeft, ChevronRight, Clock, CreditCard, FileDown, Search, ShoppingBag } from "lucide-react";
+import { Calendar, ChevronDown, ChevronLeft, ChevronRight, Clock, CreditCard, FileDown, Search, ShoppingBag, Pencil, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "../products/products.module.css";
 import orderStyles from "./orders.module.css";
+import Link from "next/link";
 
 export default function OrdersPage() {
   const [sales, setSales] = useState([]);
@@ -700,6 +701,57 @@ export default function OrdersPage() {
     }
   }, [currentPage, itemsPerPage, fetchSales, loading, reportLoading]); // Triggered on pagination changes
 
+
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to delete this Order?")) {
+      return;
+    }
+
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const token = user.token || getAuthToken();
+
+      if (!token) {
+        alert("Authentication token missing. Please log in again.");
+        router.push("/login");
+        return;
+      }
+
+      const response = await fetch(`${getApiBaseUrl()}/api/sales/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Error: ${response.status}`);
+      }
+
+      // Remove the deleted sale from state
+      const updatedSales = sales.filter((sale) => sale.id !== id);
+      setSales(updatedSales);
+
+      // Update filteredSales also
+      const updatedFilteredSales = updatedSales.filter(
+        (sale) =>
+          searchTerm.trim() === "" ||
+          String(sale.customer_name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+          String(sale.payment_method || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+          String(sale.order_number || "").toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      setFilteredSales(updatedFilteredSales);
+
+      alert("Order deleted successfully.");
+    } catch (err) {
+      alert(err.message);
+      console.error("Error deleting shift:", err);
+    }
+  };
+
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
@@ -970,9 +1022,46 @@ export default function OrdersPage() {
                         {sortConfig.field === "shift_id" && <span className={styles.sortIcon}>{sortConfig.direction === "asc" ? " ↑" : " ↓"}</span>}
                       </th>
                       <th>Order Taker</th>
-                      {/* <th>Actions</th> */}
+                      <th>Actions</th>
                     </tr>
                   </thead>
+                  {/* <tbody className={styles.tableBody}>
+                    {filteredSales.map((sale) => (
+                      <tr key={sale.id}>
+                        <td>{formatDateTime(sale.created_at)}</td>
+                        <td className={orderStyles.amountCell}>{formatCurrency(sale.total_amount)}</td>
+                        <td className={orderStyles.itemsCell}>
+                          <div className={orderStyles.itemsList}>
+                            {sale.items?.length > 0 ? (
+                              <>
+                                <span>{sale.items.length} items</span>
+                                <div className={orderStyles.itemsTooltip}>
+                                  <ul>
+                                    {sale.items.map((item, index) => (
+                                      <li key={index}>
+                                        {item.quantity} x {item.name} ({formatCurrency(item.subtotal)})
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </>
+                            ) : (
+                              <span>No items</span>
+                            )}
+                          </div>
+                        </td>
+                        <td>{sale.order_number}</td>
+                        <td>
+                          {sale.shift ? (
+                            <span className={orderStyles.shiftBadge}>{sale.shift.name}</span>
+                          ) : (
+                            <span className={orderStyles.noShift}>No shift</span>
+                          )}
+                        </td>
+                        <td>{sale.user.name}</td>
+                      </tr>
+                    ))}
+                  </tbody> */}
                   <tbody className={styles.tableBody}>
                     {filteredSales.map((sale) => (
                       <tr key={sale.id}>
@@ -1007,16 +1096,24 @@ export default function OrdersPage() {
                           )}
                         </td>
                         <td>{sale.user.name}</td>
-                        {/* <td>
-                          <button
-                            onClick={() => handleViewReceipt(sale)}
-                            className={orderStyles.viewReceiptButton}
-                            aria-label={`View Receipt for Order #${sale.id}`}
-                          >
-                            <Eye size={16} />
-                            <span>Receipt</span>
-                          </button>
-                        </td> */}
+                        <td>
+                          <div className={styles.actions}>
+                            {/* <Link
+                              href={`/dashboard/pos/edit/${sale.id}`}
+                              className={styles.editButton}
+                              aria-label={`Edit Order #${sale.id}`}
+                            >
+                              <Pencil size={16} />
+                            </Link> */}
+                            <button
+                              onClick={() => handleDelete(sale.id)}
+                              className={styles.deleteButton}
+                              aria-label={`Delete Order #${sale.id}`}
+                            >
+                              <Trash size={16} />
+                            </button>
+                          </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
